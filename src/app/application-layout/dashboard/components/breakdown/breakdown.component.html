@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-12 pr-lg-1">
+      <div *ngIf="checkIfVendor()" class="card-left-dark">
+        <h3 class="loan-review-title">White Label Breakdown</h3>
+        <div>
+          <hr class="border-bottom-hr my-2">
+        </div>
+        <div>
+          <div *ngIf="white_label_stats.length !==0 ">
+            <div class="left-side-boxes" *ngFor="let item of white_label_stats">
+              <div class="left-side-boxiteam-active my-1 cursor-pointer" style="padding: 16px 18px;">
+                <div class="my-1">
+                  <h6 class="all-loans-title-white">{{item?._id}}</h6>
+                </div>
+                <hr class="border-bottom-hr-1 my-2">
+                <div class="row">
+                  <div class="col-xl-3 mb-2">
+                    <div class="first-item-white">
+                      {{calculateDecimal(item.total_loans)}}
+                    </div>
+                    <div class="my-1">
+                      <span>
+                        <span class="second-item-white">
+                          Total Loans
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 mb-2 left-border">
+                    <div class="first-item-white">
+                      {{calculateDecimal(item.closings)}}
+                    </div>
+                    <div class="my-1">
+                      <span>
+                        <span class="second-item-white">
+                          Closings
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 mb-2 left-border">
+                    <div class="first-item-white">
+                      {{calculateCurrency(item.total_loan_amount)}}
+                    </div>
+                    <div class="my-1">
+                      <span>
+                        <span class="second-item-white">
+                          Loan Amount
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 mb-2 left-border">
+                    <div class="first-item-white">
+                      {{calculateCurrency(item.total_initial_funding)}}
+                    </div>
+                    <div class="my-1">
+                      <span>
+                        <span class="second-item-white">
+                          Initial Funding
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <hr class="border-bottom-hr-1 my-2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

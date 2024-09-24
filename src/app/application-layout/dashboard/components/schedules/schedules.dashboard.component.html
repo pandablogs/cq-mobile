@@ -1,0 +1,17 @@
+<div>
+  <div class="segmented-dev">
+    <div class="segmented-card">
+      <div class="segmented" style=" float: left;">
+        <div class="segmented-highlight"></div>
+        <button class="tabs" [ngClass]="activeView == 'Calendar' ? 'active' : ''"
+          (click)="changeActiveTab('Calendar')">Calendar</button>
+        <button class="tabs" [ngClass]="activeView == 'Navigation' ? 'active' : ''"
+          (click)="changeActiveTab('Navigation')">Navigation</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display: inline-block; width: 100%;">
+  <app-schedules-dashboard-calendar *ngIf="activeView === 'Calendar'" (changeToNavigation)="getCalendarSelectedDate($event)"></app-schedules-dashboard-calendar>
+  <app-schedules-dashboard-navigation *ngIf="activeView === 'Navigation'" [inspector_date]="inspector_date" [inspectorsOnDate]="inspectorsOnDate"></app-schedules-dashboard-navigation>
+</div>

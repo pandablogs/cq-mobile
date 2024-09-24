@@ -1,0 +1,883 @@
+<div class="row" style="padding-bottom: 80px;">
+    <div class="col-md-6 pr-lg-1">
+        <div class="card-left-dark">
+            <h3 class="loan-review-title">Loans Overview</h3>
+            <!-- <div class="my-2">
+          <p class="overview-paragraph">
+            This is the new Digitally Enhanced Accelerated Lending Platform for CQ Servicing.
+          </p>
+        </div> -->
+            <div>
+                <hr class="border-bottom-hr my-2">
+            </div>
+            <div>
+                <div class="left-side-boxes">
+                    <div class="left-side-boxiteam my-1 cursor-pointer">
+                        <div class="my-1">
+                            <h6 class="all-loans-title-white">Lead</h6>
+                        </div>
+                        <div class="my-1">
+                            <span>
+                                <span class="loans-digitnumber mr-2">{{calculateDecimal(lead)}}</span>
+
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="left-side-boxiteam my-1 cursor-pointer">
+                        <div class="my-1">
+                            <h6 class="all-loans-title-white">Pending Committed</h6>
+                        </div>
+                        <div class="my-1">
+                            <span>
+                                <span class="loans-digitnumber mr-2">{{calculateDecimal(pending_committed)}}</span>
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="left-side-boxes">
+                    <div class="left-side-boxiteam my-1 mr-2 cursor-pointer">
+                        <div class="my-1">
+                            <h6 class="all-loans-title-white">Initial Underwriting</h6>
+                        </div>
+                        <div class="my-1">
+                            <span>
+                                <span class="loans-digitnumber mr-2">{{calculateDecimal(initial_underwriting)}}</span>
+
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="left-side-boxiteam my-1 mr-2 cursor-pointer">
+                        <div class="my-1">
+                            <h6 class="all-loans-title-white">Committed</h6>
+                        </div>
+                        <div class="my-1">
+                            <span>
+                                <span class="loans-digitnumber mr-2">{{calculateDecimal(committed)}}</span>
+
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="left-side-boxes">
+                        <div class="left-side-boxiteam-active my-1 cursor-pointer" style="padding: 16px 18px;">
+                            <div class="my-1">
+                                <h6 class="all-loans-title-white">Active</h6>
+                            </div>
+                            <hr class="border-bottom-hr-1 my-2">
+                            <div class="row" *ngIf="active_stats.length">
+                                <div [class]="active_stats.length == 4 ? 'col-xl-3 mb-2' : 'col-xl-4 mb-2'" *ngFor="let activeState of active_stats;let i = index"
+                                    [ngClass]="i != 0 ? 'left-border' : ''">
+                                    <div class="first-item-white">
+                                        {{activeState?.total_loans || 0}}
+                                    </div>
+                                    <div class="my-1">
+                                        <span>
+                                            <span class="second-item-white">
+                                                {{activeState?._id || "N/A"}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="border-bottom-hr-1 my-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-left-light ">
+            <div>
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="proerties-title">Trailing Week ({{getDate(getTrailingWeekRange().from)}} -
+                            {{getDate(getTrailingWeekRange().to)}})</h3>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="segmented-dev">
+                            <div class="segmented-card">
+                                <div class="segmented" style=" float: right;">
+                                    <div class="segmented-highlight"></div>
+                                    <button class="tabs" [ngClass]="activeTrailWeek == 'Total' ? 'active' : ''"
+                                        (click)="changeActiveTab('Total','trailingWeek')">Total</button>
+                                    <button class="tabs" [ngClass]="activeTrailWeek == 'Lender' ? 'active' : ''"
+                                        (click)="changeActiveTab('Lender','trailingWeek')">Lender</button>
+                                    <button class="tabs" [ngClass]="activeTrailWeek == 'Whitelabel' ? 'active' : ''"
+                                        (click)="changeActiveTab('Whitelabel','trailingWeek')">Whitelabel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <hr class="bashboard-rightbbottom">
+                </div>
+                <div *ngIf="trailing_week_stats_white_label.length && activeTrailWeek == 'Whitelabel'">
+                    <div class="row mt-2" *ngFor="let stats of trailing_week_stats_white_label;let i = index">
+                        <div class="col-lg-12">
+                            <h3>{{stats._id}}</h3>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Closing </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam ">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Initial Funding
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Loan Amount
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  *ngIf="trailing_week_stats_lender.length && activeTrailWeek == 'Lender'">
+                    <div class="row mt-2" *ngFor="let stats of trailing_week_stats_lender;let i = index">
+                        <div class="col-lg-12">
+                            <h3>{{stats._id}}</h3>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Closing </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam ">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Initial Funding
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Loan Amount
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="trailing_week_stats_all && activeTrailWeek == 'Total'">
+                    <div class="col-lg-4 text-start border-right-one">
+                        <div class="boxnumber-contentiteam">
+                            <div>
+                                <h3 class="number-box-title">{{calculateDecimal(trailing_week_stats_all?.total_loans) || 0}}</h3>
+                                <p class="boxes-body-text"> Total Closing </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-start border-right-one">
+                        <div class="boxnumber-contentiteam ">
+                            <div>
+                                <h3 class="number-box-title">{{calculateCurrency(trailing_week_stats_all?.total_initial_funding) || 0}}</h3>
+                                <p class="boxes-body-text"> Total Initial Funding
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-start">
+                        <div class="boxnumber-contentiteam">
+                            <div>
+                                <h3 class="number-box-title">{{calculateCurrency(trailing_week_stats_all?.total_loan_amount) || 0}}</h3>
+                                <p class="boxes-body-text"> Total Loan Amount
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-left-light  mt-2">
+            <div>
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="proerties-title">Trailing Month ({{getDate(getTrailingMonthRange().from)}} -
+                            {{getDate(getTrailingMonthRange().to)}})</h3>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="segmented-dev">
+                            <div class="segmented-card">
+                                <div class="segmented" style=" float: right;">
+                                    <div class="segmented-highlight"></div>
+                                    <button class="tabs" [ngClass]="activeTrailMonth == 'Total' ? 'active' : ''"
+                                        (click)="changeActiveTab('Total','trailingMonth')">Total</button>
+                                    <button class="tabs" [ngClass]="activeTrailMonth == 'Lender' ? 'active' : ''"
+                                        (click)="changeActiveTab('Lender','trailingMonth')">Lender</button>
+                                    <button class="tabs" [ngClass]="activeTrailMonth == 'Whitelabel' ? 'active' : ''"
+                                        (click)="changeActiveTab('Whitelabel','trailingMonth')">Whitelabel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <hr class="bashboard-rightbbottom">
+                </div>
+                <div *ngIf="trailing_month_stats_white_label.length &&  activeTrailMonth == 'Whitelabel'">
+                    <div class="row mt-2" *ngFor="let stats of trailing_month_stats_white_label;let i = index">
+                        <div class="col-lg-12">
+                            <h3>{{stats._id}}</h3>
+                        </div>
+                        <div class="col-xl-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Closing </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam ">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Initial Funding
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 text-start">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Loan Amount
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="trailing_month_stats_lender.length &&  activeTrailMonth == 'Lender'">
+                    <div class="row mt-2" *ngFor="let stats of trailing_month_stats_lender;let i = index">
+                        <div class="col-lg-12">
+                            <h3>{{stats._id}}</h3>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Closing </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam ">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Initial Funding
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Loan Amount
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  *ngIf="trailing_month_stats_all && activeTrailMonth == 'Total'">
+                    <div class="row mt-2">
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateDecimal(trailing_month_stats_all?.total_loans) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Closing </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start border-right-one">
+                            <div class="boxnumber-contentiteam ">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(trailing_month_stats_all?.total_initial_funding) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Initial Funding
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-start">
+                            <div class="boxnumber-contentiteam">
+                                <div>
+                                    <h3 class="number-box-title">{{calculateCurrency(trailing_month_stats_all?.total_loan_amount) || 0}}</h3>
+                                    <p class="boxes-body-text"> Total Loan Amount
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+    </div>
+    <div class="col-md-6 pl-lg-1">
+        <div class="card-right-oneintwowrap align-items-center pt-2">
+            <div class="card-right-one">
+                <div>
+                    <div class="row align-items-center overflow-hidden">
+                        <div class="col-lg-8">
+                            <h3 class="proerties-title">Today's ({{getDate(today)}})</h3>
+                        </div>
+
+                        <div class="col-lg-4 position-relative">
+                            <div class="segmented-dev">
+                                <div class="segmented-card">
+                                    <div class="segmented" style=" float: right;">
+                                        <div class="segmented-highlight"></div>
+                                        <button class="tabs" [ngClass]="activeTabToday == 'Total' ? 'active' : ''"
+                                            (click)="changeActiveTab('Total','today')">Total</button>
+                                        <button class="tabs" [ngClass]="activeTabToday == 'Lender' ? 'active' : ''"
+                                            (click)="changeActiveTab('Lender','today')">Lender</button>
+                                        <button class="tabs" [ngClass]="activeTabToday == 'Whitelabel' ? 'active' : ''"
+                                            (click)="changeActiveTab('Whitelabel','today')">Whitelabel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="bashboard-rightbbottom">
+                    </div>
+                    <div *ngIf="today_stats_white_label.length && activeTabToday == 'Whitelabel'">
+                        <div class="row mt-2" *ngFor="let stats of today_stats_white_label;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="today_stats_lender.length && activeTabToday == 'Lender'">
+                        <div class="row mt-2" *ngFor="let stats of today_stats_lender;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="today_stats_all && activeTabToday == 'Total'">
+                        <div class="row mt-2">
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(today_stats_all?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(today_stats_all?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(today_stats_all?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-right-one">
+                <div>
+                    <div class="row align-items-center overflow-hidden">
+                        <div class="col-lg-8">
+                            <h3 class="proerties-title">This Week ({{getDate(getCurrentWeekRange().from)}} -
+                                {{getDate(getCurrentWeekRange().to)}})</h3>
+                        </div>
+
+                        <div class="col-lg-4 position-relative">
+                            <div class="segmented-dev">
+                                <div class="segmented-card">
+                                    <div class="segmented" style=" float: right;">
+                                        <div class="segmented-highlight"></div>
+                                        <button class="tabs" [ngClass]="activeTabWeek == 'Total' ? 'active' : ''"
+                                            (click)="changeActiveTab('Total','week')">Total</button>
+                                        <button class="tabs" [ngClass]="activeTabWeek == 'Lender' ? 'active' : ''"
+                                            (click)="changeActiveTab('Lender','week')">Lender</button>
+                                        <button class="tabs" [ngClass]="activeTabWeek == 'Whitelabel' ? 'active' : ''"
+                                            (click)="changeActiveTab('Whitelabel','week')">Whitelabel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="bashboard-rightbbottom">
+                    </div>
+                    <div *ngIf="current_week_stats_white_label.length && activeTabWeek == 'Whitelabel'">
+                        <div class="row mt-2" *ngFor="let stats of current_week_stats_white_label;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="current_week_stats_lender.length && activeTabWeek == 'Lender'">
+                        <div class="row mt-2" *ngFor="let stats of current_week_stats_lender;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="current_week_stats_all && activeTabWeek == 'Total'">
+                        <div class="row mt-2">
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(current_week_stats_all?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(current_week_stats_all?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(current_week_stats_all?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-right-one">
+                <div>
+                    <div class="row  align-items-center">
+                        <div class="col-lg-8">
+                            <h3 class="proerties-title">Next Week ({{getDate(getUpcomingWeekRange().from)}} -
+                                {{getDate(getUpcomingWeekRange().to)}})</h3>
+                        </div>
+                        <div class="col-lg-4 position-relative">
+                            <div class="segmented-dev">
+                                <div class="segmented-card">
+                                    <div class="segmented" style=" float: right;">
+                                        <div class="segmented-highlight"></div>
+                                        <button class="tabs" [ngClass]="activeTabNext == 'Total' ? 'active' : ''"
+                                            (click)="changeActiveTab('Total','next')">Total</button>
+                                        <button class="tabs" [ngClass]="activeTabNext == 'Lender' ? 'active' : ''"
+                                            (click)="changeActiveTab('Lender','next')">Lender</button>
+                                        <button class="tabs" [ngClass]="activeTabNext == 'Whitelabel' ? 'active' : ''"
+                                            (click)="changeActiveTab('Whitelabel','next')">Whitelabel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="bashboard-rightbbottom">
+                    </div>
+                    <div *ngIf="upcoming_week_stats_white_label.length && activeTabNext == 'Whitelabel'">
+                        <div class="row mt-2" *ngFor="let stats of upcoming_week_stats_white_label;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="upcoming_week_stats_lender.length && activeTabNext == 'Lender'">
+                        <div class="row mt-2" *ngFor="let stats of upcoming_week_stats_lender;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="upcoming_week_stats_all && activeTabNext == 'Total'">
+                        <div class="row mt-2">
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(upcoming_week_stats_all?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(upcoming_week_stats_all?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(upcoming_week_stats_all?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-right-one">
+                <div>
+                    <div class="row  align-items-center">
+                        <div class="col-lg-8">
+                            <h3 class="proerties-title">Following Week ({{getDate(getFollowingWeekRange().from)}} -
+                                {{getDate(getFollowingWeekRange().to)}})</h3>
+                        </div>
+                        <div class="col-lg-4 position-relative">
+                            <div class="segmented-dev">
+                                <div class="segmented-card">
+                                    <div class="segmented" style=" float: right;">
+                                        <div class="segmented-highlight"></div>
+                                        <button class="tabs"
+                                            [ngClass]="activeTabFollowingWeek == 'Total' ? 'active' : ''"
+                                            (click)="changeActiveTab('Total','following')">Total</button>
+                                        <button class="tabs"
+                                            [ngClass]="activeTabFollowingWeek == 'Lender' ? 'active' : ''"
+                                            (click)="changeActiveTab('Lender','following')">Lender</button>
+                                        <button class="tabs"
+                                            [ngClass]="activeTabFollowingWeek == 'Whitelabel' ? 'active' : ''"
+                                            (click)="changeActiveTab('Whitelabel','following')">Whitelabel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="bashboard-rightbbottom">
+                    </div>
+                    <div *ngIf="following_week_stats_white_label.length && activeTabFollowingWeek == 'Whitelabel'">
+                        <div class="row mt-2" *ngFor="let stats of following_week_stats_white_label;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="following_week_stats_lender.length &&  activeTabFollowingWeek == 'Lender'">
+                        <div class="row mt-2" *ngFor="let stats of following_week_stats_lender;let i = index">
+                            <div class="col-lg-12">
+                                <h3>{{stats._id}}</h3>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(stats?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="following_week_stats_all &&  activeTabFollowingWeek == 'Total'">
+                        <div class="row mt-2">
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateDecimal(following_week_stats_all?.total_loans) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Closing </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start border-right-one">
+                                <div class="boxnumber-contentiteam ">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(following_week_stats_all?.total_initial_funding) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Initial Funding
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-start">
+                                <div class="boxnumber-contentiteam">
+                                    <div>
+                                        <h3 class="number-box-title">{{calculateCurrency(following_week_stats_all?.total_loan_amount) || 0}}</h3>
+                                        <p class="boxes-body-text"> Total Loan Amount
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="card-right-one">
+          <div class="card-header px-0 py-0 border-0">
+            <div class="row">
+              <div class="col-lg-12 text-right mb-2">
+                <div ngbDropdown placement="bottom-right">
+                  <button class="px-3 py-2 btn btn-sm chevron-down-costume" ngbDropdownToggle
+                    style="background-color: #213e7a;">
+                    <span class="text-white">{{bar_type | titlecase}}</span>
+                  </button>
+                  <div ngbDropdownMenu>
+                    <button ngbDropdownItem (click)="changeBarType('default')">Default
+                      <i class="float-right ni ni-check-bold" *ngIf="bar_type==='default'"></i>
+                    </button>
+                    <button ngbDropdownItem (click)="changeBarType('2022')">2022
+                      <i class="float-right ni ni-check-bold" *ngIf="bar_type==='2022'"></i>
+                    </button>
+                    <button ngbDropdownItem (click)="changeBarType('2023')">2023
+                      <i class="float-right ni ni-check-bold" *ngIf="bar_type==='2023'"></i>
+                    </button>
+                    <button ngbDropdownItem (click)="changeBarType('2024')">2024
+                      <i class="float-right ni ni-check-bold" *ngIf="bar_type==='2024'"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <dashboard-bar-chart [barChart]="singleBarChart"></dashboard-bar-chart>
+          </div>
+
+        </div> -->
+        </div>
+    </div>
+</div>

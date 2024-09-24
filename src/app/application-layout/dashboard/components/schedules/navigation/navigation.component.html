@@ -1,0 +1,233 @@
+<div class="row">
+    <div class="col-xl-4 col-md-4 order-xl-1 mb-xl-0 map-column p-4 pl-0">
+        <h2>Inspection Schedule</h2>
+        <form [formGroup]="stopForm" (ngSubmit)="optimizeRoutes()" ngNativeValidate>
+            <div class="form-group">
+                <label class="form-control-label" for="inspector_date">Date *</label>
+                <input class=" form-control" style="color: black;" required id="inspector_date" name="inspector_date"
+                    formControlName="inspector_date" type="date" (change)="getInspectorDate($event)" />
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="route_name">Inspector Name *</label>
+                <select name="inspector_id" style="color: black;" required formControlName="inspector_id"
+                    class="form-control" id="inspector_id" (change)="getInspectorID($event)">
+                    <option hidden disabled selected value="">Choose Option</option>
+                    <option *ngFor="let item of inspectorList" [value]="item._id">{{item?.first_name || ""}}
+                        {{item?.last_name || ""}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <div [hidden]="inspectionRecords.length === 0" class="form-group">
+                    <label class="form-control-label" for="startLocation">Start Location <span class="text-red"
+                            *ngIf="is_optimized">(Marker: {{alphabet.split("")[0]}})</span></label>
+                    <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                        placeholder="Set Start Location" required autocorrect="off" autocapitalize="off"
+                        spellcheck="off" type="text" formControlName="startLocation" id="startLocation" #startLocation>
+                </div>
+                <div *ngIf="inspectionRecords.length > 0" class="row">
+                    <div class="col-6 pb-2">
+                        <label class="form-control-label" for="startLocation">Stops</label>
+                    </div>
+                    <div class="col-12">
+
+                        <div *ngFor="let item of inspectionRecords; let i = index;" class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 *ngIf="is_optimized" class="mb-1 text-red"><span class="text-muted">Marker:
+                                            </span>
+                                            {{alphabet.split("")[i+1]}}
+                                        </h4>
+                                        <h4 class="mb-1"><span class="text-muted">Borrower Name: </span>
+                                            {{item?.borrower_name | titlecase}}
+                                        </h4>
+                                        <h4 class="mb-1"><span class="text-muted">Borrower Email: </span>
+                                            {{item?.borrower_email}}
+                                        </h4>
+                                        <h4 class="mb-1"><span class="text-muted">Borrower Phone: </span>
+                                            {{item?.borrower_phone | mask:'(000) 000-0000'}}
+                                        </h4>
+                                        <h4 class="mb-1"><span class="text-muted">Property Address: </span>
+                                            {{item?.property_full_address}}
+                                        </h4>
+                                        <h4 *ngIf="item?.nearest_address !== ''" class="mb-1 text-red"><span
+                                                class="text-muted">Marker Address: </span>
+                                            {{item?.nearest_address}}
+                                        </h4>
+                                        <h4 class="mb-1"><span class="text-muted">Inspector Name: </span>
+                                            {{item?.inspector_name}}</h4>
+                                        <h4 class="mb-1"><span class="text-muted">Date: </span>
+                                            {{getDate(item?.inspection_date)}}</h4>
+                                        <h4 class="mb-1"><span class="text-muted">Time: </span>
+                                            {{item?.inspection_time}}</h4>
+                                        <h4 class="mb-1"><span class="text-muted">Type: </span> <span
+                                                class="badge badge-pill badge-primary mr-1">{{item?.type}}</span>
+                                        </h4>
+                                        <h6 *ngIf="item?.nearest_address !== ''" class="text-red mb-0"><small>Note:
+                                                The property address was not a 100% match on Google Maps, hence an
+                                                approximate address has been indicated.</small></h6>
+                                        <div *ngIf="!item.inspection_finalized; else timeFinalized" class="mt-2">
+                                            <button type="button"
+                                                (click)="openEditInspectionModal(editInspectionModal, item)"
+                                                class="btn btn-sm btn-default">Edit Date/Time</button>
+                                            <button type="button"
+                                                (click)="finalizeDateTime(inspectionTimeChangeAlert, item)"
+                                                class="btn btn-sm btn-success">Finalize
+                                                Date/Time</button>
+                                        </div>
+                                        <ng-template #timeFinalized>
+                                            <h4 class="mb-1">
+                                                <span class="text-muted">Date/Time Finalized: </span>
+                                                Yes
+                                            </h4>
+                                        </ng-template>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div [hidden]="inspectionRecords.length === 0" class="form-group mt-3">
+                    <label class="form-control-label" for="finishLocationAddress">Finish Location <span class="text-red"
+                            *ngIf="is_optimized">(Marker:
+                            {{alphabet.split("")[inspectionRecords.length + 1]}})</span></label>
+                    <input *ngIf="finishLocation === 'custom' " type="text" class="form-control"
+                        (keydown.enter)="$event.preventDefault()" placeholder="Set Finish Location" required
+                        autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                        formControlName="finishLocationAddress" id="finishLocationAddress" #finishLocationAddress>
+                </div>
+            </div>
+            <div *ngIf="inspectionRecords.length === 0">
+                <div class="row">
+                    <div class="col-12 align-self-center text-center">
+                        <button type="button" (click)="getInspectorSchedule()"
+                            class="btn btn-block btn-success">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="inspectionRecords.length > 0" class="row">
+                <div class="col-6 align-self-center text-center">
+                    <button type="reset" (click)="clearData()" class="btn btn-block btn-warning">Clear</button>
+                </div>
+                <div class="col-6 align-self-center text-center">
+                    <button *ngIf="!is_optimized" type="submit" class="btn btn-block btn-default">Optimize</button>
+                    <!-- <button *ngIf="is_optimized" type="button" (click)="onSubmit()"
+                            class="btn btn-block btn-success">Send</button> -->
+                    <button *ngIf="is_optimized" type="button" (click)="sendSMS(sendLinkModal)"
+                        class="btn btn-block btn-success">Send Navigation Link</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xl-8 col-md-8 order-xl-2 map-column">
+        <div class="row">
+            <div class="col px-0">
+                <div class="card shadow  border-0">
+                    <div style="width: 100%; height: calc(100vh - 120px);" id="map" #map></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #listTemp let-item>
+    <div class="row align-items-center">
+        <div class="col-12 text-left">
+            <h5 class="mb-0">{{item.result.first_name}} {{item.result.last_name}}</h5>
+            <p style="font-size: 10px; font-weight: 600;" class="mb-0">{{item.result.address}}</p>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #sendLinkModal let-c="close" let-d="dismiss">
+    <div class="modal-content" style="z-index: 1060;">
+        <div class="p-0 modal-body">
+            <div class="mb-0 border-0 shadow card bg-secondary">
+                <div class="card-header  pb-2">
+                    <strong>Send Navigation Link</strong>
+                </div>
+                <div class="card-body px-lg-4 py-lg-4">
+                    <div class="form-group">
+                        <label class=" form-control-label" for="inspector_phone">Mobile Number *</label>
+                        <input class="border-gray form-control input-colorblack text-dark" id="inspector_phone"
+                            name="inspector_phone" [(ngModel)]="inspector_phone" type="text"
+                            [placeholder]="'(xxx) xxx-xxxx'" mask='(000) 000-0000' />
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-warning" (click)="d('Cross click')">Close</button>
+                        <button type="button" class="btn btn-default" (click)="openNavigateLink()">Navigate</button>
+                        <button type="submit" class="btn btn-success" (click)="c('Cross click')">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #editInspectionModal let-c="close" let-d="dismiss">
+    <div class="modal-content" style="z-index: 1060;">
+        <div class="p-0 modal-body">
+            <div class="mb-0 border-0 shadow card bg-secondary">
+                <div class="card-header  pb-2">
+                    <strong>Edit Inspection</strong>
+                </div>
+
+                <div class="card-body px-lg-4 py-lg-4">
+                    <form role="form" #editInspectionForm="ngForm" (ngSubmit)="c(editInspectionForm.value)"
+                        ngNativeValidate>
+                        <div class="mb-2 form-group">
+                            <label class=" form-control-label" for="inspection_date">Inspection Date *</label>
+                            <input class=" form-control" style="color: black;" required id="inspection_date"
+                                name="inspection_date" [(ngModel)]="inspection_date" type="date" />
+                        </div>
+                        <div class="mb-2 form-group">
+                            <label class=" form-control-label" for="inspection_start_time">Inspection Start Time
+                                *</label>
+                            <input class=" form-control" style="color: black;" required id="inspection_start_time"
+                                name="inspection_start_time" [(ngModel)]="inspection_start_time" type="time" />
+                        </div>
+
+                        <div class="mb-2 form-group">
+                            <label class=" form-control-label" for="inspection_end_time">Inspection End Time *</label>
+                            <input class=" form-control" style="color: black;" required id="inspection_end_time"
+                                name="inspection_end_time" [(ngModel)]="inspection_end_time" type="time" />
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-warning" (click)="d('Cross click')">Cancel</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #inspectionTimeChangeAlert let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="p-0 modal-body">
+            <div class="mb-0 border-0 shadow card bg-secondary">
+                <div class="card-body px-lg-4 py-lg-4">
+                    <div class="my-3 text-center text-danger">
+                        <i class="fas fa-exclamation-circle fa-4x"></i>
+                    </div>
+                    <div class="mb-2 text-center text-dark">
+                        <h1>Are you sure</h1>
+                    </div>
+                    <div class="mb-3 text-center text-dark">
+                        <p>Do you really want to finalize Inspection Date/Time?</p>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" (click)="d('Cross click')" class="my-3 btn btn-warning">Cancel</button>
+                        <button type="submit" (click)="c('Cross click')" class="my-3 btn btn-success">Finalize</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,31 @@
+.heatMap {
+  .controls-div {
+    position: absolute;
+    z-index: 9;
+    top: 10px;
+    left: 178px;
+    background: none padding-box rgb(255, 255, 255);
+    display: table-cell;
+    border: 0px;
+    margin: 0px;
+    padding: 7px 17px;
+    text-transform: none;
+    appearance: none;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    text-align: center;
+    height: 40px;
+    vertical-align: middle;
+    color: rgb(86, 86, 86);
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+    width: fit-content;
+
+  }
+
+  #map{
+    z-index: 1 !important;
+  }
+}

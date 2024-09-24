@@ -1,0 +1,138 @@
+.main-content1 {
+  height: calc(100vh - 64px);
+  width: 100%;
+  /* background: #f1efef; */
+}
+
+.column-right {
+  height: calc(100vh - 64px);
+  overflow: auto;
+  padding: 20px;
+}
+
+.column-left {
+  height: calc(100vh - 64px);
+  overflow: auto;
+  padding: 20px;
+}
+
+@media(max-width:600px) {
+  .main-content1 {
+    height: auto;
+  }
+
+  .column-right {
+    height: auto;
+  }
+
+  .column-left {
+    height: auto;
+  }
+}
+
+.cal-month-view .cal-day-cell {
+  min-height: 50px !important;
+}
+
+.instruction li span {
+  font-size: 16px;
+}
+
+.instruction li {
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.move-card:hover {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12) !important;
+}
+
+.calendar-container {
+  width: 100%;
+  overflow: auto;
+}
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1000;
+  /* Sit on top */
+  right: 0;
+  top: 0;
+  background-image: linear-gradient(to right top, #b8ebc6, #86dfcb, #4dd0d7, #00bee4, #12a8eb);
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  height: 100%;
+  z-index: 1001;
+  position: relative;
+  top: 0%;
+  /* 25% from the top */
+  width: 100%;
+  /* 100% width */
+  // margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  /* Display block instead of inline */
+  transition: 0.3s;
+  /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
+  color: #000000;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  z-index: 1002;
+  position: absolute;
+  top: 0.3em;
+  right: 0.7em !important;
+  font-size: 60px;
+  color: #213e7a;
+  cursor: pointer;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+input, select, textarea {
+  color: black !important;
+}
+
+.view-button{
+  border-radius: 15px;
+}
+
+.view-span{
+  padding: 10px;
+}

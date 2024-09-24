@@ -1,0 +1,93 @@
+<div class="row" *ngIf="activeTab === 'All' ">
+  <div class="col-md-6 pr-lg-1">
+    <div class="card-left-dark" *ngFor="let overview of overviews">
+      <h3 class="loan-review-title">{{overview?.title}}</h3>
+      <div class="my-2">
+        <p class="overview-paragraph">
+        </p>
+      </div>
+      <div>
+        <hr class="border-bottom-hr">
+      </div>
+      <div>
+        <div class="left-side-boxes">
+          <div class="left-side-boxiteam my-1 mr-2 cursor-pointer">
+            <div class="my-1">
+              <h6 class="all-loans-title">Force Placed</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{overview?.stats?.force_placed || 0}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="left-side-boxiteam my-1 cursor-pointer">
+            <div class="my-1">
+              <h6 class="all-loans-title">Insured</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{overview?.stats?.insured || 0}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="left-side-boxes">
+          <div class="left-side-boxiteam my-1 mr-2 cursor-pointer"
+            >
+            <div class="my-1">
+              <h6 class="all-loans-title">Pending Payment</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{overview?.stats?.pending_payment || 0}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="left-side-boxiteam my-1 cursor-pointer" >
+            <div class="my-1">
+              <h6 class="all-loans-title">Uninsured</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{overview?.stats?.uninsured || 0}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 pl-lg-1">
+    <div class="card-right-oneintwowrap align-items-center pt-2">
+      <div class="card-right-one" *ngFor="let item of expiration_data">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">{{item?.title}}</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row">
+            <div class="col-lg-6 text-start border-right-one">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title"> {{item?.days?.property}}</h3>
+                  <p class="boxes-body-text ">Property Insurance  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{item?.days?.flood}}</h3>
+                  <p class="boxes-body-text"> Flood Insurance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

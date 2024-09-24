@@ -1,0 +1,67 @@
+<section class="heatMap">
+  <!-- heatmap.component.html -->
+  <div class="mb-2 mt-2 position-relative">
+    <div class="controls-div">
+      <!-- <button id="roadmap" (click)="setMapView('roadmap')" class="btn btn-sm" [ngClass]="currentView == 'roadmap' ? 'btn-success' : 'btn-default'">Roadmap</button>
+      <button id="satellite" (click)="setMapView('satellite')" class="btn btn-sm" [ngClass]="currentView == 'satellite' ? 'btn-success' : 'btn-default'">Satellite</button> -->
+      <div>
+        <div>
+          <label class="mb-0 mx-2" for="toggleMarks">Heatmap</label>
+          <input id='toggleMarks' [checked]="showHeatmap" type="checkbox" class="" (change)="showMarkers()">
+
+          <label class="mb-0 mx-2" for="toggleMarks">Markers</label>
+          <input id='toggleMarks' [checked]="showMarks" type="checkbox" class="" (change)="showMarkers()">
+        </div>
+      </div>
+    </div>
+    <div #HeatMap id="map" style="height: calc(100vh - 264px); width: 100%;"></div>
+
+  </div>
+
+</section>
+
+<ng-template #locationModal let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <div class="p-0 modal-body">
+      <div class=" row">
+        <div class=" col">
+          <div class="mb-0 shadow card" style=" background: #eee !important;">
+            <div class="pb-4 bg-transparent border-0 card-header"
+              style="border-bottom: 0!important; position: relative;">
+              <div class=" row">
+                <div class=" col-12">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="mb-0 text-left text-dark">Loan Number : {{selectedLocation?.loan_number}}</h2>
+                    <div class="px-2 text-end"><button class="btn btn-sm btn-primary view-button"
+                        (click)="navigateButton(selectedLocation)"><span class="view-span">View</span></button></div>
+                  </div>
+                  <div>
+                    <div style="background: #fff;" class="mb-2 card">
+                      <div class="card-body py-3"
+                        style="background: #fff; border-radius: calc( 0.375rem - 1px ) !important;">
+                        <div class="row">
+                          <div class="col-12">
+                            <div>
+                              <!-- <h5 class="mb-1">Loan Number: <span class="preview-text">
+                                {{selectedLocation?.loan_number || "N/A"}}
+                                  </span>
+                              </h5> -->
+                              <h5 class="mb-1">Property Address: <span class="">
+                                  {{selectedLocation.location || "N/A"}}
+                                </span>
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

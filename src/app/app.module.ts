@@ -1,6 +1,6 @@
 import { NgModule ,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { ApphomelayoutComponent } from './apphomelayout/apphomelayout.component';
+// import { ApplicationLayoutComponent } from './apphomelayout/apphomelayout.component';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';

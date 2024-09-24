@@ -1,0 +1,240 @@
+<div class="row" *ngIf="activeTab === 'All' ">
+  <div class="col-md-6 pr-lg-1">
+    <div class="card-left-dark">
+      <h3 class="loan-review-title">Draws Overview</h3>
+      <div class="my-2">
+        <p class="overview-paragraph">
+          <!-- This is the new Digitally Enhanced Accelerated Lending Platform for CQ Servicing. -->
+        </p>
+      </div>
+      <div>
+        <hr class="border-bottom-hr">
+      </div>
+      <div>
+        <div class="left-side-boxes">
+          <div class="left-side-boxiteam my-1 mr-2 cursor-pointer">
+            <div class="my-1">
+              <h6 class="all-loans-title">Requested</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(requested)}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="left-side-boxiteam my-1 cursor-pointer">
+            <div class="my-1">
+              <h6 class="all-loans-title">Scheduled</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(scheduled)}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="left-side-boxes">
+          <div class="left-side-boxiteam my-1 mr-2 cursor-pointer"
+            >
+            <div class="my-1">
+              <h6 class="all-loans-title">Under Inspection</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(under_inspection)}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="left-side-boxiteam my-1 cursor-pointer" >
+            <div class="my-1">
+              <h6 class="all-loans-title">Sent For Approval</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(sent_for_approval)}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="left-side-boxes">
+          <div class="left-side-boxiteam my-1 mr-2 cursor-pointer" >
+            <div class="my-1">
+              <h6 class="all-loans-title">Approved</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(approved)}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="left-side-boxiteam my-1 cursor-pointer" >
+            <div class="my-1">
+              <h6 class="all-loans-title">Funded</h6>
+            </div>
+            <div class="my-1">
+              <span>
+                <span class="loans-digitnumber mr-2">{{calculateDecimal(funded)}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 pl-lg-1">
+    <div class="card-right-oneintwowrap align-items-center pt-2">
+      <div class="card-right-one">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">Todays ({{getDate(today)}})</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row" *ngFor="let item of todays_data">
+            <div class="col-lg-6 text-start border-right-one" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                  <p class="boxes-body-text"> {{item?._id}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                  <p class="boxes-body-text"> Amount to fund
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-right-one">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">This Week ({{getDate(getCurrentWeekRange().from)}} -
+              {{getDate(getCurrentWeekRange().to)}})</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row" *ngFor="let item of current_week">
+            <div class="col-lg-6 text-start border-right-one" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                  <p class="boxes-body-text"> {{item?._id}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                  <p class="boxes-body-text"> Amount to fund
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-right-one">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">Next Week ({{getDate(getUpcomingWeekRange().from)}} -
+              {{getDate(getUpcomingWeekRange().to)}})</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row" *ngFor="let item of upcoming_week">
+            <div class="col-lg-6 text-start border-right-one" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                  <p class="boxes-body-text"> {{item?._id}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start" *ngIf="item?._id && item?._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                  <p class="boxes-body-text"> Amount to fund
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-right-one">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">Following Week ({{getDate(getFollowingWeekRange().from)}} -
+              {{getDate(getFollowingWeekRange().to)}})</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row" *ngFor="let item of following_week">
+            <div class="col-lg-6 text-start border-right-one">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                  <p class="boxes-body-text"> {{item?._id}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                  <p class="boxes-body-text"> Amount to fund
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card-right-one">
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="proerties-title">Trailing Month ({{getDate(getTrailingMonthRange().from)}} -
+              {{getDate(getTrailingMonthRange().to)}})</h3>
+          </div>
+          <div>
+            <hr class="bashboard-rightbbottom">
+          </div>
+          <div class="row" *ngFor="let item of trailing_month">
+            <div class="col-lg-6 text-start border-right-one" *ngIf="item._id && item._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                  <p class="boxes-body-text"> {{item?._id}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-start" *ngIf="item._id && item._id!=''">
+              <div class="boxnumber-contentiteam">
+                <div>
+                  <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                  <p class="boxes-body-text"> Amount to fund
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

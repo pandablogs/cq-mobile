@@ -1,0 +1,168 @@
+<div>
+  <div class="row">
+    <div class="col-md-6 pr-lg-1">
+      <div class="card-left-dark">
+        <h3 class="loan-review-title">Loans Overview</h3>
+        <div class="my-2">
+          <p class="overview-paragraph">
+            This is the new Digitally Enhanced Accelerated Lending Platform for CQ Servicing.
+          </p>
+        </div>
+        <div>
+          <hr class="border-bottom-hr">
+        </div>
+        <div>
+       
+          <div class="left-side-boxes" *ngFor="let item of lenderloans">
+            <div class="left-side-boxiteam-active my-1 cursor-pointer" (click)="goApplicationLists(item.status_title)">
+              <div class="my-1">
+                <h6 class="all-loans-title">{{item.status_title}}</h6>
+              </div>
+              <hr class="border-bottom-hr-1">
+              <div class="row">
+                  <div class="col-xl-4 mb-2" [ngClass]="i==0 ? '' : 'left-border' " *ngFor="let lenderItem of item.lenders; let i=index">
+                    <div class="first-item" >
+                      {{lenderItem.total_loans}}
+                    </div>
+                    <div class="my-1" style="margin-left: 20px;">
+                      <span>
+                        <span class="second-item">
+                          {{lenderItem.name}}
+                        </span>
+                      </span>
+                    </div>
+                </div>
+              </div>
+              <hr class="border-bottom-hr-1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 pl-lg-1">
+      <div class="card-right-oneintwowrap align-items-center pt-2">
+        <div class="card-right-one">
+          <div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <h3 class="proerties-title">This Week ({{getDate(getCurrentWeekRange().from)}} -
+                {{getDate(getCurrentWeekRange().to)}})</h3>
+            </div>
+            <div>
+              <hr class="bashboard-rightbbottom">
+            </div>
+            <div class="row" *ngFor="let item of current_week">
+              <div class="col-lg-6 text-start border-right-one" *ngIf="item?._id && item?._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                    <p class="boxes-body-text"> {{item?._id}} </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 text-start" *ngIf="item?._id && item?._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                    <p class="boxes-body-text"> Amount to fund
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card-right-one">
+          <div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <h3 class="proerties-title">Next Week ({{getDate(getUpcomingWeekRange().from)}} -
+                {{getDate(getUpcomingWeekRange().to)}})</h3>
+            </div>
+            <div>
+              <hr class="bashboard-rightbbottom">
+            </div>
+            <div class="row" *ngFor="let item of upcoming_week">
+              <div class="col-lg-6 text-start border-right-one" *ngIf="item?._id && item?._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                    <p class="boxes-body-text"> {{item?._id}} </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 text-start" *ngIf="item?._id && item?._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                    <p class="boxes-body-text"> Amount to fund
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card-right-one">
+          <div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <h3 class="proerties-title">Following Week ({{getDate(getFollowingWeekRange().from)}} -
+                {{getDate(getFollowingWeekRange().to)}})</h3>
+            </div>
+            <div>
+              <hr class="bashboard-rightbbottom">
+            </div>
+            <div class="row" *ngFor="let item of following_week">
+              <div class="col-lg-6 text-start border-right-one">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                    <p class="boxes-body-text"> {{item?._id}} </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 text-start">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                    <p class="boxes-body-text"> Amount to fund
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-right-one">
+          <div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <h3 class="proerties-title">Trailing Month ({{getDate(getTrailingMonthRange().from)}} - {{getDate(getTrailingMonthRange().to)}})</h3>
+            </div>
+            <div>
+              <hr class="bashboard-rightbbottom">
+            </div>
+            <div class="row" *ngFor="let item of trailing_month">
+              <div class="col-lg-6 text-start border-right-one" *ngIf="item._id && item._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateDecimal(item?.total_loans || 0)}}</h3>
+                    <p class="boxes-body-text"> {{item?._id}} </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 text-start" *ngIf="item._id && item._id!=''">
+                <div class="boxnumber-contentiteam">
+                  <div>
+                    <h3 class="number-box-title">{{calculateCurrency(item?.total_amount || 0)}}</h3>
+                    <p class="boxes-body-text"> Amount to fund
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
