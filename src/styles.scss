@@ -1,18 +1,21 @@
-/* You can add global styles to this file, and also import other style files or in angular json file*/
-//@import "~swiper/swiper-bundle";
-//@import "~ng2-daterangepicker/assets/daterangepicker.css";
+@use '@angular/material' as mat;
 
+@include mat.core(); // Core Material styles
 
-// .bg-1 .sidebar-wrap .sidebar{
-//     background-image: url('assets/img/backgorund-image.svg');
-// }
-// .bg-2 .sidebar-wrap .sidebar{
-//     background-image: url('assets/img/backgorund-image2.svg');
-// }
-// .bg-3 .sidebar-wrap .sidebar{
-//     background-image: url('assets/img/backgorund-image3.svg');
-// }
+// Define custom primary and accent colors
+$custom-primary: mat.define-palette(mat.$teal-palette);
+$custom-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
 
+// Define a custom light theme
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+  )
+));
+
+// Apply custom theme to all Material components
+@include mat.all-component-themes($custom-theme);
 
 
 
@@ -136,3 +139,5 @@
       display: block;
   }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

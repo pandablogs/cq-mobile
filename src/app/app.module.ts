@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -19,6 +20,9 @@ import { AppRoutingModule, routes } from './app.routes';
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
-  schemas : [CUSTOM_ELEMENTS_SCHEMA ]
+  schemas : [CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [
+    provideAnimationsAsync()
+  ]
 })
 export class AppModule { }

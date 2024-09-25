@@ -52,7 +52,7 @@
 
 .proerties-title {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   letter-spacing: -0.01em;
   color: #E3E3E3;
   margin-bottom: 0;
@@ -218,14 +218,16 @@
   color: #246897;
 }
 
+.card-left-dark {
+  margin: 0.5rem auto;
+}
+
 @media only screen and (max-width: 1256px) {
   // .gm-john-title {
   //   text-align: center;
   // }
 
-  .card-left-dark {
-    margin: 0.5rem auto;
-  }
+
 
   // .card-right-oneintwowrap {
   //   margin: .5rem auto;

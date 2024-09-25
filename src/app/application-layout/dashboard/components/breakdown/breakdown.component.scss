@@ -45,7 +45,7 @@
 
 .loan-review-title {
   font-weight: 600;
-  font-size: 32px;
+  font-size: 27px;
   letter-spacing: -0.01em;
   color: #E3E3E3;
   margin-bottom: 0;
@@ -219,7 +219,7 @@
   color: #246897;
 }
 
-@media only screen and(max-width: 1256px) {
+@media only screen and ( max-width: 1256px) {
   // .gm-john-title {
   //   text-align: center;
   // }
@@ -233,13 +233,13 @@
   // }
 }
 
-@media only screen and(max-width: 880px) {
+@media only screen and (max-width: 880px) {
   .card-wraper-main {
     justify-content: center;
   }
 }
 
-@media only screen and(max-width: 650px) {
+@media only screen and (max-width: 650px) {
   .boxnumber-contentiteam {
     border-right: 0;
   }

@@ -9,6 +9,25 @@ import { StaticfooterComponent } from './partials/staticfooter/staticfooter.comp
 import { SwiperModule } from 'swiper/angular';
 import { LiquidityComponent } from './dashboard/components/liquidity/liquidity.component';
 import { ToastrModule } from 'ngx-toastr';
+import { BreakDownComponent } from './dashboard/components/breakdown/breakdown.component';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
+
+import {MatButtonModule} from '@angular/material/button'
+import {MatCardModule} from '@angular/material/card';
+import {provideNativeDateAdapter} from '@angular/material/core';
+
+
+import { DashboardCalendarComponent } from './dashboard/components/dashboard-calender/dashboard-calendar.component';
 
 
 
@@ -19,14 +38,24 @@ import { ToastrModule } from 'ngx-toastr';
     StaticfooterComponent,
     SidebarComponent,
     HeadermenuComponent,
-    LiquidityComponent
+    LiquidityComponent,
+    BreakDownComponent,
+    DashboardCalendarComponent
   ],
   imports: [
     CommonModule,
     ApphomelayoutRoutingModule,
     SwiperModule,
-    ToastrModule
+    ToastrModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    MatButtonModule
   ],
+  providers:[provideNativeDateAdapter()],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeLayoutModuleModule { }

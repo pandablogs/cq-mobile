@@ -19,30 +19,39 @@ export class LiquidityComponent implements OnInit {
   activeTrailWeek: string = "Total";
 
   today: any;
-  active_stats: any = [];
+  active_stats: any = [
+  {
+    total_loans : 40,
+    _id : "Quick Lending LLC"
+  },
+  {
+    total_loans : 90,
+    _id : "Taxes Real Estate Fund l,LP"
+  }
+];
   status_stats: any = [];
-  today_stats_all: any = null;
-  today_stats_lender: any = [];
-  today_stats_white_label: any = [];
-  current_week_stats_all: any = null;
-  current_week_stats_lender: any = [];
-  current_week_stats_white_label: any = [];
-  following_week_stats_all: any = null;
-  following_week_stats_lender: any = [];
-  following_week_stats_white_label: any = [];
-  upcoming_week_stats_all: any = null;
-  upcoming_week_stats_lender: any = [];
-  upcoming_week_stats_white_label: any = [];
-  trailing_month_stats_all: any = null;
-  trailing_month_stats_lender: any = [];
-  trailing_month_stats_white_label: any = [];
-  trailing_week_stats_all: any = null;
-  trailing_week_stats_lender: any = [];
-  trailing_week_stats_white_label: any = [];
-  lead: number = 0;
-  pending_committed: number = 0;
-  initial_underwriting: number = 0;
-  committed: number = 0;
+  today_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  today_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  today_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  current_week_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  current_week_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  current_week_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  following_week_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  following_week_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  following_week_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  upcoming_week_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  upcoming_week_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  upcoming_week_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  trailing_month_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  trailing_month_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  trailing_month_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  trailing_week_stats_all: any = {total_loans:20,total_initial_funding:30,total_loan_amount:20};
+  trailing_week_stats_lender: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  trailing_week_stats_white_label: any = [{total_loans:20,total_initial_funding:30,total_loan_amount:20}];
+  lead: number = 15;
+  pending_committed: number = 155;
+  initial_underwriting: number = 120;
+  committed: number = 362;
 
   constructor(
     // private staffDashboardAPIService: StaffDashboardAPIService,

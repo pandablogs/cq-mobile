@@ -71,7 +71,7 @@
                             <hr class="border-bottom-hr-1 my-2">
                             <div class="row" *ngIf="active_stats.length">
                                 <div [class]="active_stats.length == 4 ? 'col-xl-3 mb-2' : 'col-xl-4 mb-2'" *ngFor="let activeState of active_stats;let i = index"
-                                    [ngClass]="i != 0 ? 'left-border' : ''">
+                                   >
                                     <div class="first-item-white">
                                         {{activeState?.total_loans || 0}}
                                     </div>
@@ -123,7 +123,7 @@
                         <div class="col-lg-12">
                             <h3>{{stats._id}}</h3>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam">
                                 <div>
                                     <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam ">
                                 <div>
                                     <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -156,7 +156,7 @@
                         <div class="col-lg-12">
                             <h3>{{stats._id}}</h3>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam">
                                 <div>
                                     <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam ">
                                 <div>
                                     <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="row" *ngIf="trailing_week_stats_all && activeTrailWeek == 'Total'">
-                    <div class="col-lg-4 text-start border-right-one">
+                    <div class="col-lg-4 text-start ">
                         <div class="boxnumber-contentiteam">
                             <div>
                                 <h3 class="number-box-title">{{calculateDecimal(trailing_week_stats_all?.total_loans) || 0}}</h3>
@@ -193,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 text-start border-right-one">
+                    <div class="col-lg-4 text-start ">
                         <div class="boxnumber-contentiteam ">
                             <div>
                                 <h3 class="number-box-title">{{calculateCurrency(trailing_week_stats_all?.total_initial_funding) || 0}}</h3>
@@ -247,7 +247,7 @@
                         <div class="col-lg-12">
                             <h3>{{stats._id}}</h3>
                         </div>
-                        <div class="col-xl-4 text-start border-right-one">
+                        <div class="col-xl-4 text-start ">
                             <div class="boxnumber-contentiteam">
                                 <div>
                                     <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -255,7 +255,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 text-start border-right-one">
+                        <div class="col-xl-4 text-start ">
                             <div class="boxnumber-contentiteam ">
                                 <div>
                                     <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -280,7 +280,7 @@
                         <div class="col-lg-12">
                             <h3>{{stats._id}}</h3>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam">
                                 <div>
                                     <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -288,7 +288,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam ">
                                 <div>
                                     <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -310,7 +310,7 @@
                 </div>
                 <div  *ngIf="trailing_month_stats_all && activeTrailMonth == 'Total'">
                     <div class="row mt-2">
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam">
                                 <div>
                                     <h3 class="number-box-title">{{calculateDecimal(trailing_month_stats_all?.total_loans) || 0}}</h3>
@@ -318,7 +318,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 text-start border-right-one">
+                        <div class="col-lg-4 text-start ">
                             <div class="boxnumber-contentiteam ">
                                 <div>
                                     <h3 class="number-box-title">{{calculateCurrency(trailing_month_stats_all?.total_initial_funding) || 0}}</h3>
@@ -376,7 +376,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -384,7 +384,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -409,7 +409,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -417,7 +417,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -439,7 +439,7 @@
                     </div>
                     <div *ngIf="today_stats_all && activeTabToday == 'Total'">
                         <div class="row mt-2">
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(today_stats_all?.total_loans) || 0}}</h3>
@@ -447,7 +447,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(today_stats_all?.total_initial_funding) || 0}}</h3>
@@ -501,7 +501,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -509,7 +509,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -534,7 +534,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -542,7 +542,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -564,7 +564,7 @@
                     </div>
                     <div *ngIf="current_week_stats_all && activeTabWeek == 'Total'">
                         <div class="row mt-2">
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(current_week_stats_all?.total_loans) || 0}}</h3>
@@ -572,7 +572,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(current_week_stats_all?.total_initial_funding) || 0}}</h3>
@@ -625,7 +625,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -633,7 +633,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -658,7 +658,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -666,7 +666,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -688,7 +688,7 @@
                     </div>
                     <div  *ngIf="upcoming_week_stats_all && activeTabNext == 'Total'">
                         <div class="row mt-2">
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(upcoming_week_stats_all?.total_loans) || 0}}</h3>
@@ -696,7 +696,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(upcoming_week_stats_all?.total_initial_funding) || 0}}</h3>
@@ -752,7 +752,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -760,7 +760,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -785,7 +785,7 @@
                             <div class="col-lg-12">
                                 <h3>{{stats._id}}</h3>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(stats?.total_loans) || 0}}</h3>
@@ -793,7 +793,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(stats?.total_initial_funding) || 0}}</h3>
@@ -815,7 +815,7 @@
                     </div>
                     <div *ngIf="following_week_stats_all &&  activeTabFollowingWeek == 'Total'">
                         <div class="row mt-2">
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam">
                                     <div>
                                         <h3 class="number-box-title">{{calculateDecimal(following_week_stats_all?.total_loans) || 0}}</h3>
@@ -823,7 +823,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-start border-right-one">
+                            <div class="col-lg-4 text-start ">
                                 <div class="boxnumber-contentiteam ">
                                     <div>
                                         <h3 class="number-box-title">{{calculateCurrency(following_week_stats_all?.total_initial_funding) || 0}}</h3>

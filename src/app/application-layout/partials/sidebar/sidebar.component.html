@@ -50,7 +50,7 @@
                 @for (item of navItems; track $index) {
                     @if (item?.route) {
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" routerLink="/dashboard" routerLinkActive='active'
+                            <a class="nav-link" aria-current="page" [routerLink]="item.route" routerLinkActive='active'
                                 (click)="menuclose()">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
                                 <div class="col">{{item?.title}}</div>
@@ -81,7 +81,7 @@
                     }
                     
                 }
-                
+
                 <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/chat" routerLinkActive='active' (click)="menuclose()">
                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>

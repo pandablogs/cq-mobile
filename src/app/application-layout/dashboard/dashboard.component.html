@@ -15,21 +15,21 @@
     <!-- money request received -->
     <div class="row mb-4 hideonprogress">
         <div class="w-100 d-flex gap-2 overflow-auto">
-            <button class="tabs " (click)="changeActiveTab('All')"
+            <button class="tabs " (click)="changeActiveTab('All')" 
                 [ngClass]="{ 'active-tab': activeTab === 'All' }">All</button>
-            <button class="tabs " (click)="changeActiveTab('Breakdown')"
+            <button class="tabs " (click)="changeActiveTab('Breakdown')" 
                 [ngClass]="{ 'active-tab': activeTab === 'Breakdown' }">Breakdown</button>
-            <button class="tabs " (click)="changeActiveTab('Calendar')"
+            <button class="tabs " (click)="changeActiveTab('Calendar')" 
                 [ngClass]="{ 'active-tab': activeTab === 'Calendar' }">Calendar</button>
             <button class="tabs " (click)="changeActiveTab('Inspection')"
                 [ngClass]="{ 'active-tab': activeTab === 'Inspection' }">Inspection</button>
-            <button class="tabs " (click)="changeActiveTab('Schedules')"
+            <button class="tabs " (click)="changeActiveTab('Schedules')" 
                 [ngClass]="{ 'active-tab': activeTab === 'Schedules' }">Schedules</button>
-            <button class="tabs " (click)="changeActiveTab('Draws')"
+            <button class="tabs " (click)="changeActiveTab('Draws')" 
                 [ngClass]="{ 'active-tab': activeTab === 'Draws' }">Draws</button>
-            <button class="tabs " (click)="changeActiveTab('Insurance')"
+            <button class="tabs " (click)="changeActiveTab('Insurance')" 
                 [ngClass]="{ 'active-tab': activeTab === 'Insurance' }">Insurance</button>
-            <button class="tabs " (click)="changeActiveTab('map')"
+            <button class="tabs " (click)="changeActiveTab('map')" 
                 [ngClass]="{ 'active-tab': activeTab === 'map' }">Map</button>
         </div>
 
@@ -304,5 +304,7 @@
 
     <!-- Blogs -->
 
-    <app-liquidity></app-liquidity>
+    <app-liquidity *ngIf="activeTab === 'All'"></app-liquidity>
+    <app-breakdown *ngIf="activeTab === 'Breakdown'" [white_label_stats]="[]"></app-breakdown>
+    <app-dashboard-calendar *ngIf="activeTab === 'Calendar'"></app-dashboard-calendar>
 </div>

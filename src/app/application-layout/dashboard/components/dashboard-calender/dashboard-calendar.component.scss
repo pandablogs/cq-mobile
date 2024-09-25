@@ -136,3 +136,10 @@ input, select, textarea {
 .view-span{
   padding: 10px;
 }
+
+
+::ng-deep{
+  .mat-calendar-body-selected{
+    background-color: #213e7a !important;
+  }
+}
