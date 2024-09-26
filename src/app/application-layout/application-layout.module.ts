@@ -25,9 +25,12 @@ import {
 import {MatButtonModule} from '@angular/material/button'
 import {MatCardModule} from '@angular/material/card';
 import {provideNativeDateAdapter} from '@angular/material/core';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { DashboardCalendarComponent } from './dashboard/components/dashboard-calender/dashboard-calendar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { GeneralComponent } from './profile/component/general/general.component';
+import { PasswordComponent } from './profile/component/password/password.component';
 
 
 
@@ -40,7 +43,10 @@ import { DashboardCalendarComponent } from './dashboard/components/dashboard-cal
     HeadermenuComponent,
     LiquidityComponent,
     BreakDownComponent,
-    DashboardCalendarComponent
+    DashboardCalendarComponent,
+    ProfileComponent,
+    PasswordComponent,
+    GeneralComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +59,8 @@ import { DashboardCalendarComponent } from './dashboard/components/dashboard-cal
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   providers:[provideNativeDateAdapter()],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]

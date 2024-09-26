@@ -1,0 +1,11 @@
+.main-container{
+    padding-top: 15%;
+    height: auto;
+    padding-bottom: 10% !important;
+}
+
+@media screen and (max-width:991px) {
+    .main-container{
+        padding-top: 30%;
+    }
+}

@@ -1,25 +1,15 @@
-#homePage{
-    margin-top: 15%;
-    height: auto;
-    padding-bottom: 10% !important;
-
-    .tabs{
-        border: 1px solid #dddddd;
+#homePage {
+  .tabs {
+    border: 1px solid #dddddd;
     background: #f8f8f8;
     border-radius: 7px;
     padding: 6px 15px;
-    text-transform: capitalize ;
+    text-transform: capitalize;
     transition: 0.1s background ease-in-out;
-    }
+  }
 
-    .active-tab{
-        background: #213e7a;
-        color: #fff;
-    }
-}
-
-@media screen and (max-width:991px) {
-    #homePage{
-        margin-top: 30%;
-    }
+  .active-tab {
+    background: #213e7a;
+    color: #fff;
+  }
 }
