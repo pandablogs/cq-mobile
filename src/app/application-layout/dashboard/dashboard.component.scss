@@ -1,15 +1,46 @@
 #homePage {
   .tabs {
-    border: 1px solid #dddddd;
-    background: #f8f8f8;
-    border-radius: 7px;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    border-radius: 20px;
     padding: 6px 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
     text-transform: capitalize;
+    color: #555555;
     transition: 0.1s background ease-in-out;
   }
 
   .active-tab {
-    background: #213e7a;
-    color: #fff;
+    color: #000000;
+    font-weight: 500;
+    border: 2px solid #000;
+  }
+
+  .left-icon,
+  .right-icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  #homePage {
+    .left-icon {
+      display: block;
+      position: absolute;
+      top: 5px;
+      font-size: 20px;
+      left: -10px;
+      background: #eef1f9;
+    }
+
+    .right-icon {
+      display: block;
+      position: absolute;
+      top: 5px;
+      font-size: 20px;
+      right: -10px;
+      background: #eef1f9;
+    }
   }
 }

@@ -1,48 +1,64 @@
 <div class="container">
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+            <a class="nav-link" routerLink="/home" >
                 <span>
                     <i class="nav-icon bi bi-house"></i>
-                    <span class="nav-text">Home</span>
+                    <span class="nav-text">Dashboard</span>
                 </span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/stats" routerLinkActive="active">
+            <a class="nav-link" routerLink="/stats" >
                 <span>
                     <i class="nav-icon bi bi-laptop"></i>
-                    <span class="nav-text">Statistics</span>
+                    <span class="nav-text">Pipeline</span>
                 </span>
             </a>
         </li>
-        <li class="nav-item centerbutton">
+        <!-- <li class="nav-item centerbutton" *ngIf="tabLists.length">
             <div class="nav-link"  [class.active]="isVisited == true" (click)="checkVisited()">
                 <span class="theme-radial-gradient">
                     <i class="close bi bi-x"></i>
                     <img src="assets/img/centerbutton.svg" class="nav-icon" alt="" />
                 </span>
                 <div class="nav-menu-popover justify-content-between">
-                    <button type="button" class="btn btn-lg btn-icon-text" routerLink="/pay" routerLinkActive="active">
-                        <i class="bi bi-credit-card size-32"></i><span>Pay</span>
+                    @for (item of tabLists; track $index) {<button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab(item?.tabName)"  >
+                        <i class="bi bi-credit-card size-32"></i><span>{{item.tabName}}</span>
+                    </button>}
+
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Breakdown')"  >
+                        <i class="bi bi-arrow-up-right-circle size-32"></i><span>Breakdown</span>
                     </button>
 
-                    <button type="button" class="btn btn-lg btn-icon-text" routerLink="/sendmoney" routerLinkActive="active">
-                        <i class="bi bi-arrow-up-right-circle size-32"></i><span>Send</span>
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Calendar')" >
+                        <i class="bi bi-receipt size-32"></i><span>Calendar</span>
                     </button>
 
-                    <button type="button" class="btn btn-lg btn-icon-text" routerLink="/bills" routerLinkActive="active">
-                        <i class="bi bi-receipt size-32"></i><span>Bills</span>
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Inspection')"  >
+                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Inspection</span>
                     </button>
 
-                    <button type="button" class="btn btn-lg btn-icon-text" routerLink="/receivemoney" routerLinkActive="active">
-                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Receive</span>
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Schedules')"  >
+                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Schedules</span>
+                    </button>
+
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Draws')"  >
+                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Draws</span>
+                    </button>
+
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Insurance')"  >
+                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Insurance</span>
+                    </button>
+
+                    <button type="button" class="btn btn-lg btn-icon-text" (click)="changeTab('Map')"  >
+                        <i class="bi bi-arrow-down-left-circle size-32"></i><span>Map</span>
                     </button>
                 </div>
             </div>
-        </li>
+        </li> -->
         <li class="nav-item">
-            <a class="nav-link" routerLink="/rewards" routerLinkActive="active">
+            <a class="nav-link" routerLink="/rewards" >
                 <span>
                     <i class="nav-icon bi bi-gift"></i>
                     <span class="nav-text">Rewards</span>
@@ -50,7 +66,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/wallet" routerLinkActive="active">
+            <a class="nav-link" routerLink="/wallet" >
                 <span>
                     <i class="nav-icon bi bi-wallet2"></i>
                     <span class="nav-text">Wallet</span>

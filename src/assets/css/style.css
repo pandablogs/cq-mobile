@@ -11224,8 +11224,7 @@ a {
 
 a,
 .text-color-theme {
-  /* color: var(--fimobile-theme-color); */
-  color: #20355a ;
+  color: var(--fimobile-theme-color);
 }
 
 .fw-medium {
@@ -11297,7 +11296,7 @@ main {
 }
 
 .dark-bg {
-  background-color: #122a55;
+  background-color: var(--fimobile-theme-color);
   background-image: url("../img/backgorund-image.svg");
   background-repeat: repeat-x;
   background-position: bottom center !important;
@@ -11629,6 +11628,7 @@ main {
 .btn-default {
   background: #20355a !important;
   color: #fff !important;
+  padding: 10px !important;
 }
 
 .btn-default:active, .btn-default:hover {
@@ -11901,23 +11901,23 @@ main {
 
 .loader-cube-wrap {
   align-self: flex-end;
-  /* animation-duration: 2s;
-  animation-iteration-count: infinite; */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
   height: auto;
   margin: 0 auto 0 auto;
   transform-origin: bottom;
   position: relative;
   width: fit-content;
   background-color: #fff;
-  padding: 10px;
+  padding: 15px;
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 
 }
 
-/* .loader-cube-wrap img {
+.loader-cube-wrap img {
   max-width: 100%;
-} */
+}
 
 .loader-cube-animate {
   animation-name: cubeanimate;
@@ -13684,7 +13684,7 @@ a.card {
   width: 180px;
   /* margin-bottom: 15px; */
   border-radius: var(--fimobile-rounded);
-}
+  }
 
 .logo-small {
   width: auto;
@@ -13697,7 +13697,7 @@ a.card {
 .logo-small img {
   width: 180px;
   margin: 0;
-  margin-right: 8px;
+    margin-right: 8px;
   border: 0;
   vertical-align: middle;
 }

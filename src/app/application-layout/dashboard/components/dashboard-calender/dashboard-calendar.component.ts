@@ -4,6 +4,7 @@ import {
   MatDialog,
   MatDialogRef
 } from '@angular/material/dialog';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 
 
@@ -16,24 +17,14 @@ import {
 })
 export class DashboardCalendarComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatBottomSheet) {}
   ngOnInit(): void {
     
   }
 
 
   openDialog(content:any): void {
-    const dialogRef = this.dialog.open(content, {
-      data: {},
-      maxWidth : 'auto',
-      enterAnimationDuration : '0.2s',
-      exitAnimationDuration : '0.2s'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
+    this.dialog.open(content, {});
   }
 
   selected:any;

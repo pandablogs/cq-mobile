@@ -6,28 +6,17 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path: '', // The base path
-    component: ApplicationLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: DashboardComponent // Load the HomeComponent as the default child of AppHomeLayoutComponent
-      },
-      {
-        path:'profile',
-        component : ProfileComponent
-      }
-    ]
+    path: 'dashboard',
+    component: DashboardComponent, // Load the HomeComponent as the default child of AppHomeLayoutComponent
   },
   {
-    path: 'dashboard', // Redirect root path to 'home'
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+    path: 'profile',
+    component: ProfileComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ApphomelayoutRoutingModule { }
+export class ApphomelayoutRoutingModule {}

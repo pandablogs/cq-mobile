@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-staticfooter',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./staticfooter.component.scss']
 })
 export class StaticfooterComponent implements OnInit {
+  @Output() changeActiveTab: EventEmitter<any> = new EventEmitter();
+
+  @Input() tabLists:any;
   public isVisited = false;
   constructor() { }
 
@@ -14,5 +17,9 @@ export class StaticfooterComponent implements OnInit {
 
   checkVisited(){
     this.isVisited = !this.isVisited;
+  }
+
+  changeTab(tab:any){
+    this.changeActiveTab.emit(tab);
   }
 }

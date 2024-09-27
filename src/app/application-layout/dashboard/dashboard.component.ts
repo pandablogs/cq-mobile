@@ -18,6 +18,43 @@ export class DashboardComponent implements OnInit {
   isChecked: boolean = false;
   activeTab: string= "All";
 
+  tabLists = [
+    {
+      tabName:'All'
+    },
+    {
+      tabName:'Breakdown'
+    },
+    {
+      tabName:'Calendar'
+    },
+    {
+      tabName:'Inspection'
+    },
+    {
+      tabName:'Schedules'
+    },
+    {
+      tabName:'Draws'
+    },
+    {
+      tabName:'Insurance'
+    },
+    {
+      tabName:'Map'
+    }
+  ]
+
+  scrollLeft() {
+    const scrollContainer:any = document.querySelector('#mainContainer') as HTMLElement;
+    scrollContainer.scrollBy({ left: -100, behavior: 'smooth' }); // Scroll left by 100px
+  }
+  
+  scrollRight() {
+    const scrollContainer:any = document.querySelector('#mainContainer') as HTMLElement;
+    scrollContainer.scrollBy({ left: 100, behavior: 'smooth' }); // Scroll right by 100px
+  }
+
   constructor() { }
   ngOnInit(): void {
 
@@ -37,8 +74,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  changeActiveTab(tab:any){
+  changeActiveTab(tab:any,event:any){
     this.activeTab = tab;
+    const element : any = event.target as HTMLElement;
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }
 
 }

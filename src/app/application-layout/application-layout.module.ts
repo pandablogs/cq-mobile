@@ -21,6 +21,11 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
+
+import {
+  MatBottomSheetModule,
+} from '@angular/material/bottom-sheet';
 
 import {MatButtonModule} from '@angular/material/button'
 import {MatCardModule} from '@angular/material/card';
@@ -29,8 +34,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { DashboardCalendarComponent } from './dashboard/components/dashboard-calender/dashboard-calendar.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GeneralComponent } from './profile/component/general/general.component';
-import { PasswordComponent } from './profile/component/password/password.component';
 
 
 
@@ -45,8 +48,6 @@ import { PasswordComponent } from './profile/component/password/password.compone
     BreakDownComponent,
     DashboardCalendarComponent,
     ProfileComponent,
-    PasswordComponent,
-    GeneralComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +61,9 @@ import { PasswordComponent } from './profile/component/password/password.compone
     MatDialogActions,
     MatDialogClose,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule,
+    MatBottomSheetModule
   ],
   providers:[provideNativeDateAdapter()],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
