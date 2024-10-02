@@ -34,6 +34,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { DashboardCalendarComponent } from './dashboard/components/dashboard-calender/dashboard-calendar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PipelineComponent } from './pipeline/pipeline.component';
+import { ApplicationPipelineListsComponent } from './pipeline/components/application-pipeline-lists/application-pipeline-lists.component';
 
 
 
@@ -48,6 +50,8 @@ import { ProfileComponent } from './profile/profile.component';
     BreakDownComponent,
     DashboardCalendarComponent,
     ProfileComponent,
+    PipelineComponent,
+    ApplicationPipelineListsComponent
   ],
   imports: [
     CommonModule,

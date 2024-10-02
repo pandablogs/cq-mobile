@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+#pipeline {
+  .type-filters {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    align-items: center;
+    
+    .badge-nav {
+        font-size: 14px;
+        padding: 8px 20px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: 19px;
+        flex: none;
+        order: 1;
+        font-family: "Outfit", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.02em;
+        text-transform: capitalize;
+        color: #646464;
+        border: 0.4px solid #a1a1a1;
+        cursor: pointer;
+      }
+
+    .activeTab {
+      background: #213e7a;
+      color: #fff;
+    }
+  }
+  .left-icon {
+    display: block;
+    position: absolute;
+    top: 5px;
+    font-size: 20px;
+    left: -16px;
+    background: #eef1f9;
+  }
+
+  .right-icon {
+    display: block;
+    position: absolute;
+    top: 5px;
+    font-size: 20px;
+    right: -15px;
+    background: #eef1f9;
+  }
+
+  .filters-btn{
+    background-color: #ffffff;
+    border: 2px solid #092c9f;
+    color: #092c9f;
+    border-radius: 20px;
+    text-transform: capitalize;
+    width: fit-content;
+    font-size: 14px;
+    padding: 2px 14px;
+    font-weight: 500;
+  }
+
+  .filters-btn:focus{
+    background-color: #092c9f;
+    color: #fff;
+  }
+
+  // Filter Options Side View
+
+.filter-side-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0; /* Initially hidden */
+    background-color: #fff;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out; /* Smooth height transition */
+    z-index: 1000; /* Ensure it's above other elements */
+
+    .filter-headings {
+      background-color: #f1f1f1;
+      border: none;
+      border-radius: 15px;
+      box-shadow: none !important;
+  }
+  
+  .filter-headings ul li {
+      font-size: 14px;
+  }
+  
+  .filter-headings ul .active-filter {
+      border-right: 3px solid #092c9f;
+      border-radius: 0;
+      font-weight: 600;
+  }
+  
+  .filter-options {
+      background-color: none !important;
+      border: none;
+      box-shadow: none;
+  }
+  
+  .type-filters2 ul {
+      height: 60vh !important;
+      overflow: auto !important;
+  }
+  
+  .type-filters2 ul li {
+      border: none;
+  }
+  
+  .form-check-label {
+      font-size: 12px;
+  }
+
+  .filter-btns{
+    button{
+      padding: 6px 20px;
+      text-transform: capitalize;
+      border-radius: 20px;
+    }
+
+    button:first-child{
+      border:2px solid #092c9f;
+      color: #092c9f;
+      font-weight: 600;
+    }
+
+    button:last-child{
+      background-color: #092c9f;
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+}
+
+.filter-side-drawer.open {
+    height: 85vh; /* Set height when opened (adjust as needed) */
+}
+
+
+
+}
+
