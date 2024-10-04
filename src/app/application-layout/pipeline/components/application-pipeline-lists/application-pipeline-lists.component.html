@@ -1,99 +1,162 @@
-<div class="row">
-    <div class="col-lg-12">
-      <div class="scroll-container" style="max-height: calc(100vh - 350px); overflow-y: auto;">
-        <table class="table1" width="100%">
-          <thead style="position: sticky;top: 0;background-color: #213E7A;color: azure;z-index: 1;">
-            <tr>
-              <!-- <th></th> -->
-              <th>
-                <h6 class="mb-0 text-white">Actions</h6>
-              </th>
-              <th >
-                <h6 sortData="loan_terms.internal_status"  class="mb-0 text-white">
-                  Status</h6>
-              </th>
-              <th>
-                <h6 sortData="date_added"  class="mb-0 text-white">Date</h6>
-              </th>
-              <th>
-                <h6 sortData="vendor_type"  class="mb-0 text-white">White Label</h6>
-              </th>
-              <th>
-                <h6 sortData="application.borrower_info.borrower_first_name" 
-                  class="mb-0 text-white">Name</h6>
-              </th>
-              <th>
-                <h6 sortData="application.property_details.property_full_address" 
-                  class="mb-0 text-white">Property Address</h6>
-              </th>
-              <th>
-                <h6 sortData="application.business_entity.business_entity_name" 
-                  class="mb-0 text-white">Entity Name</h6>
-              </th>
-              <th>
-                <h6 sortData="loan_type"  class="mb-0 text-white">Loan Program</h6>
-              </th>
-              <th>
-                <h6 sortData="loan_program"  class="mb-0 text-white">Loan Type</h6>
-              </th>
-              <!-- <th>
-                <h6 sortData="application.loan_terms.desired_total_amount" 
-                  class="mb-0 text-white">Desired Loan Amount</h6>
-              </th>
-              <th>
-                <h6 sortData="application.loan_terms.desired_closing_date" 
-                  class="mb-0 text-white">Desired Closing Date</h6>
-              </th> -->
-              <th>
-                <h6 sortData="loan_terms.loan_info.initial_funding_amount" 
-                  class="mb-0 text-white"> Initial Funding (in $)</h6>
-              </th>
-              <th>
-                <h6 sortData="loan_terms.loan_info.repair_budget" 
-                  class="mb-0 text-white"> Repair Budget </h6>
-              </th>
-              <th>
-                <h6 sortData="loan_terms.loan_info.total_loan_amount" 
-                  class="mb-0 text-white">Total Loan Amount</h6>
-              </th>
-              <th >
-                <h6 sortData="loan_terms.loan_info.final_closing_date" 
-                  class="mb-0 text-white">Actual Closing Date</h6>
-              </th>
+<div class="row main-wraper overflow-hidden mt-3">
+  <div class="col-lg-12">
+    <div class="scroll-container pb-3" style="max-height: calc(100vh - 150px); overflow-y: auto;overflow-x: hidden;">
+      <div class="row">
+        @for (item of data; track $index) {
+        <div class="col-xl-4 mb-4">
+          <div class="card rounded-lg" style="background-color: #f9f9f9; border-radius: 15px;">
 
-              <th >
-                <h6 sortData="appraisal.as_completed_value"  class="mb-0 text-white">
-                  ARV</h6>
-              </th>
-              <th >
-                <h6 sortData="application.admin_info.loan_officer" 
-                  class="mb-0 text-white">Loan Officer</h6>
-              </th>
-              <th>
-                <h6 sortData="loan_terms.loan_info.net_origination_fee" 
-                  class="mb-0 text-white"> Total Origination </h6>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary">+</button>
-                <button class="btn btn-sm btn-outline-secondary">👁</button>
-                <button class="btn btn-sm btn-outline-danger">🗑</button>
-              </td>
-              <td>
-                <button class="btn btn-sm btn-primary">Paid Off</button>
-              </td>
-              <td>06/25/2024<br>11:28 PM</td>
-              <td>Legacy Preferred Lending, LLC</td>
-              <td>Richard</td>
-              <td>Lin</td>
-              <td>7219 Dahlia St, Houston, Texas, 77012</td>
-              <td>LINCO MANAGEMENT</td>
-            </tr>
-          </tbody>
-        </table>
+            <!-- Card Header with Status and Action Button -->
+            <div class="card-header d-flex justify-content-between align-items-center p-3 text-white"
+              style="border-radius: 15px 15px 0 0;">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-shield-check me-2" style="font-size: 1.5rem;"></i>
+                <h6 class="mb-0">Status: Paid Off</h6>
+              </div>
+              <button mat-icon-button class="bg-none border-0 text-white fs-5" (click)="toggleDrawer()">
+                <i class="bi bi-plus-circle-fill"></i>
+              </button>
+            </div>
+
+            <!-- Card Body with Structured Information -->
+            <div class="card-body p-4">
+              <div class="row mb-3">
+                <!-- Left Column -->
+                <div class="col-6">
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">Date:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">06/25/2024 <br> 11:28 PM</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">White Label:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">Legacy Preferred Lending, LLC</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">Name:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">Richard Lin</span>
+                  </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-6">
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">Entity Name:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">LINCO MANAGEMENT</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">Loan Program:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">Loan Type</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong style="font-size: 0.8rem;">Loan Officer:</strong>
+                    <span class="text-muted d-block" style="font-size: 0.75rem;">John Doe</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Full Width Data (Address, Funding, ARV, etc.) -->
+              <div class="mb-2">
+                <strong style="font-size: 0.8rem;">Property Address:</strong>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">7219 Dahlia St, Houston, Texas,
+                  77012</span>
+              </div>
+              <div class="mb-2">
+                <strong style="font-size: 0.8rem;">Initial Funding (in $):</strong>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">$150,000</span>
+              </div>
+              <div class="mb-2">
+                <strong style="font-size: 0.8rem;">Total Loan Amount (in $):</strong>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">$500,000</span>
+              </div>
+              <div class="mb-2">
+                <strong style="font-size: 0.8rem;">ARV:</strong>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">$650,000</span>
+              </div>
+            </div>
+
+            <!-- Card Footer with Action Buttons -->
+            <div class="card-footer bg-light d-flex justify-content-between p-3" style="border-radius: 0 0 15px 15px;">
+              <button mat-stroked-button color="primary">
+                <i class="bi bi-eye"></i> View
+              </button>
+              <button mat-stroked-button class="text-danger">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        }
       </div>
     </div>
   </div>
+  <div class="view-data-side-drawer" id="view-data-side-drawer">
+    <div class="row flex-wrap">
+      <div class="col-12 text-end">
+        <div class="p-2">
+          <button mat-icon-button style="font-size: 18px;" (click)="toggleDrawer()"> <i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+  
+      <div class="col-12 mt-3 px-0">
+        <!-- Loan Status -->
+        <div class="card border-0 shadow-none filter-options p-3">
+          <div>
+            <div class="row mb-3">
+              <!-- Left Column -->
+              <div class="col-6">
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">Date:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">06/25/2024 <br> 11:28 PM</span>
+                </div>
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">White Label:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">Legacy Preferred Lending, LLC</span>
+                </div>
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">Name:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">Richard Lin</span>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="col-6">
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">Entity Name:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">LINCO MANAGEMENT</span>
+                </div>
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">Loan Program:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">Loan Type</span>
+                </div>
+                <div class="mb-2">
+                  <strong style="font-size: 0.8rem;">Loan Officer:</strong>
+                  <span class="text-muted d-block" style="font-size: 0.75rem;">John Doe</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Width Data (Address, Funding, ARV, etc.) -->
+            <div class="mb-2">
+              <strong style="font-size: 0.8rem;">Property Address:</strong>
+              <span class="text-muted d-block" style="font-size: 0.75rem;">7219 Dahlia St, Houston, Texas,
+                77012</span>
+            </div>
+            <div class="mb-2">
+              <strong style="font-size: 0.8rem;">Initial Funding (in $):</strong>
+              <span class="text-muted d-block" style="font-size: 0.75rem;">$150,000</span>
+            </div>
+            <div class="mb-2">
+              <strong style="font-size: 0.8rem;">Total Loan Amount (in $):</strong>
+              <span class="text-muted d-block" style="font-size: 0.75rem;">$500,000</span>
+            </div>
+            <div class="mb-2">
+              <strong style="font-size: 0.8rem;">ARV:</strong>
+              <span class="text-muted d-block" style="font-size: 0.75rem;">$650,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
