@@ -10,6 +10,7 @@ import { SwiperModule } from 'swiper/angular';
 import { LiquidityComponent } from './dashboard/components/liquidity/liquidity.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BreakDownComponent } from './dashboard/components/breakdown/breakdown.component';
+import {MatIconModule} from '@angular/material/icon';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {
@@ -67,6 +68,7 @@ import { ApplicationPipelineListsComponent } from './pipeline/components/applica
     MatButtonModule,
     MatTabsModule,
     MatListModule,
+    MatIconModule,
     MatBottomSheetModule
   ],
   providers:[provideNativeDateAdapter()],
